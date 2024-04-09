@@ -82,7 +82,7 @@ public class Main {
         System.out.println("Текущие задачи после удаления : " + taskManager.get());
 
         System.out.println("Текущие эпики до удаления" + taskManager.getEpic());
-        System.out.println("Удаляем эпики");
+//        System.out.println("Удаляем эпики");
 //        taskManager.deleteAllEpic();
 //        System.out.println("Текущие эпики после удаления"  + taskManager.getEpic());
 //        System.out.println("Текущие подзадачи после удаления"  + taskManager.getSubTasks());
@@ -90,7 +90,7 @@ public class Main {
         System.out.println("Удаляем подзадачи");
         taskManager.deleteAllSubTask();
         System.out.println("Текущие подзадачи после удаления : " + taskManager.getSubTask());
-        System.out.println(taskManager.getEpic());
+        System.out.println("Текущие эпики после подзадач удаления : " + taskManager.getEpic());
 
     }
 }

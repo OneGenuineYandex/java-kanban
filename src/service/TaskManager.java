@@ -77,12 +77,12 @@ public class TaskManager {
         subTask.setId(generateId());
         subTasks.put(subTask.getId(), subTask);
         Epic epic = subTask.getEpic();
-        if (epics.get(subTask.getId()) == null) {
+        if (epics.get(epic.getId()) == null) {
             epic.setSubTasks(new ArrayList<>());
         }
         epic.addSubTask(subTask);
         calculateStatus(subTask.getEpic());
-        epics.put(subTask.getId(), epic);
+//        epics.put(subTask.getId(), epic);
         return subTask;
     }
 
