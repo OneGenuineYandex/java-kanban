@@ -5,7 +5,6 @@ import model.Status;
 import model.SubTask;
 import model.Task;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -77,12 +76,8 @@ public class TaskManager {
         subTask.setId(generateId());
         subTasks.put(subTask.getId(), subTask);
         Epic epic = subTask.getEpic();
-        if (epics.get(epic.getId()) == null) {
-            epic.setSubTasks(new ArrayList<>());
-        }
         epic.addSubTask(subTask);
         calculateStatus(subTask.getEpic());
-//        epics.put(subTask.getId(), epic);
         return subTask;
     }
 
