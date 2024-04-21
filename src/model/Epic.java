@@ -21,6 +21,10 @@ public class Epic extends Task {
         subTasks.add(subTask);
     }
 
+    public void deleteSubtask(SubTask subTask) {
+        subTasks.remove(subTask);
+    }
+
     public void deleteSubtask(int id) {
         for (int i = 0; i < subTasks.size(); i++) {
             SubTask subTask = subTasks.get(i);
@@ -30,6 +34,7 @@ public class Epic extends Task {
             }
         }
     }
+
 
     public List<SubTask> getSubTasks() {
         return subTasks;
