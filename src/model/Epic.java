@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Epic extends Task {
 
-    private List<SubTask> subTasks;
+    private final List<SubTask> subTasks;
 
     public Epic(int id, String name, Status status, String description) {
         super(id, name, status, description);
@@ -38,9 +38,5 @@ public class Epic extends Task {
 
     public List<SubTask> getSubTasks() {
         return subTasks;
-    }
-
-    public void setSubTasks(List<SubTask> subTasks) {
-        this.subTasks = subTasks;
     }
 }

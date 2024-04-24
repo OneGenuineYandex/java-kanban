@@ -2,29 +2,33 @@ import model.Epic;
 import model.Status;
 import model.SubTask;
 import model.Task;
+import service.HistoryManager;
+import service.InMemoryHistoryManager;
+import service.InMemoryTaskManager;
 import service.TaskManager;
 
 public class Main {
 
     public static void main(String[] args) {
         //Мои "чудо-тесты")))
-        TaskManager taskManager = new TaskManager();
+        HistoryManager historyManager = new InMemoryHistoryManager();
+        TaskManager taskManager = new InMemoryTaskManager(historyManager);
         System.out.println("Проверка создания сущностьей");
-        Task task = taskManager.create(new Task(taskManager.getSeq(), "Новая задача", Status.NEW, "Встать"));
+        Task task = taskManager.create(new Task(1, "Новая задача", Status.NEW, "Встать"));
         System.out.println("Create task: " + task);
-        Task task1 = taskManager.create(new Task(taskManager.getSeq(), "Новая задача1", Status.NEW, "Сесть"));
+        Task task1 = taskManager.create(new Task(2, "Новая задача1", Status.NEW, "Сесть"));
         System.out.println("Create task1: " + task1);
-        Epic epic = taskManager.createEpic(new Epic(taskManager.getSeq(), "Новый эпик", Status.NEW, "Приготовить суп"));
+        Epic epic = taskManager.createEpic(new Epic(3, "Новый эпик", Status.NEW, "Приготовить суп"));
         System.out.println("Create epic: " + epic);
-        Epic epic1 = taskManager.createEpic(new Epic(taskManager.getSeq(), "Новый эпик1", Status.NEW, "Прибраться"));
+        Epic epic1 = taskManager.createEpic(new Epic(4, "Новый эпик1", Status.NEW, "Прибраться"));
         System.out.println("Create epic1: " + epic1);
-        SubTask subTask = taskManager.createSubTask(new SubTask(taskManager.getSeq(), "Новая подзадача", Status.NEW, "Купить курицу", epic1));
+        SubTask subTask = taskManager.createSubTask(new SubTask(5, "Новая подзадача", Status.NEW, "Купить курицу", epic1));
         System.out.println("Create subTask: " + subTask);
-        SubTask subTask1 = taskManager.createSubTask(new SubTask(taskManager.getSeq(), "Новая подзадача1", Status.NEW, "Купить картошку", epic));
+        SubTask subTask1 = taskManager.createSubTask(new SubTask(6, "Новая подзадача1", Status.NEW, "Купить картошку", epic));
         System.out.println("Create subTask1: " + subTask1);
-        SubTask subTask2 = taskManager.createSubTask(new SubTask(taskManager.getSeq(), "Новая подзадача2", Status.NEW, "Вымыть посуду", epic1));
+        SubTask subTask2 = taskManager.createSubTask(new SubTask(7, "Новая подзадача2", Status.NEW, "Вымыть посуду", epic1));
         System.out.println("Create subTask2: " + subTask2);
-        SubTask subTask3 = taskManager.createSubTask(new SubTask(taskManager.getSeq(), "Новая подзадача3", Status.NEW, "Вымыть полы", epic1));
+        SubTask subTask3 = taskManager.createSubTask(new SubTask(8, "Новая подзадача3", Status.NEW, "Вымыть полы", epic1));
         System.out.println("Create subTask3: " + subTask3);
         System.out.println("_____________________");
 
