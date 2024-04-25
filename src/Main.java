@@ -99,7 +99,23 @@ public class Main {
         taskManager.deleteAllSubTask();
         System.out.println("Текущие подзадачи после удаления : " + taskManager.getSubTask());
         System.out.println("Текущие эпики после подзадач удаления : " + taskManager.getEpic());
+        System.out.println("______________________");
 
+        System.out.println("Проверка работы истории");
+        historyManager.add(taskManager.create(new Task(10, "Задаача1", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(11, "Задаача2", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(16, "Задаача3", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(17, "Задаача4", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(18, "Задаача5", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(19, "Задаача6", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(20, "Задаача7", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(21, "Задаача8", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(22, "Задаача9", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(23, "Задаача10", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(36, "Задаача11", Status.NEW, "Описание")));
+        historyManager.add(taskManager.create(new Task(56, "Задаача12", Status.NEW, "Описание")));
+        System.out.println(historyManager.getHistory());
+        System.out.println("______________________");
 
     }
 }
