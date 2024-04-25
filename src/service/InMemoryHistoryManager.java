@@ -19,7 +19,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (histories.size() < MAX_SIZE_HISTORIES)
             histories.add(task);
         else {
-            histories.removeFirst();
+            histories.remove(0);
             histories.add(task);
         }
     }
