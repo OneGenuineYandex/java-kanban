@@ -26,7 +26,9 @@ public class InMemoryTaskManagerTest {
     @DisplayName("Создание задачи")
     void testCreateTask() {
         Task task = new Task(0, "Task 1", Status.NEW, "Test task creation");
+
         Task createdTask = taskManager.create(task);
+
         assertNotNull(createdTask, "Задача должна быть создана");
         assertEquals(1, createdTask.getId(), "ID должен быть равен 1");
         assertEquals(Status.NEW, createdTask.getStatus(), "Статус должен быть NEW");
@@ -50,6 +52,7 @@ public class InMemoryTaskManagerTest {
     @DisplayName("Создание эпика")
     void testCreateEpic() {
         Epic epic = new Epic(0, "Epic 1", Status.NEW, "Test epic creation");
+
         Epic createdEpic = taskManager.createEpic(epic);
 
         assertNotNull(createdEpic, "Эпик должен быть создан");
@@ -62,6 +65,7 @@ public class InMemoryTaskManagerTest {
     void testDeleteTask() {
         Task task = new Task(0, "Task 1", Status.NEW, "Test task deletion");
         taskManager.create(task);
+
         taskManager.delete(1);
 
         assertNull(taskManager.get(1), "Задачи не должно быть после удаления");
@@ -72,11 +76,11 @@ public class InMemoryTaskManagerTest {
     void testDeleteSubTask() {
         Epic epic = new Epic(0, "Epic 1", Status.NEW, "Test epic creation");
         taskManager.createEpic(epic);
-
         SubTask subTask = new SubTask(0, "SubTask 1", Status.NEW, "Test subtask creation", epic);
         taskManager.createSubTask(subTask);
 
         taskManager.deleteSubTask(2);
+
         assertNull(taskManager.getSubTask(2), "Сабтаска не должно быть после удаления");
         assertTrue(epic.getSubTasks().isEmpty(), "Список сабтасков эпика должен быть пустым");
     }
@@ -88,6 +92,7 @@ public class InMemoryTaskManagerTest {
         taskManager.createEpic(epic);
 
         taskManager.deleteEpic(1);
+
         assertNull(taskManager.getEpic(1), "Эпика не должно быть после удаления");
     }
 
