@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InMemoryHistoryManagerTest {
 
@@ -29,25 +30,25 @@ public class InMemoryHistoryManagerTest {
     public void testAddTask() {
         historyManager.add(task1);
         List<Task> history = historyManager.getHistory();
+
         assertEquals(1, history.size(), "Проверка, что история содержит одну задачу");
         assertTrue(history.contains(task1), "Проверка, что задача добавлена в историю");
     }
 
     @Test
-    @DisplayName("Тестирование максимального размера истории")
-    public void testMaxHistorySize() {
-        // Заполнить историю
-        for (int i = 1; i <= 10; i++) {
-            historyManager.add(new Task(i, "Task_ " + i, Status.NEW, "Description " + i));
-        }
-
-        assertEquals(10, historyManager.getHistory().size(), "Проверка, что история заполнена до максимального размера");
-
-        // Добавить задачу, чтобы проверить удаление
+    @DisplayName("Тестирование что элементы не повторяются")
+    public void testNoDuplicateTasks() {
+        // Добавляем две задачи
         historyManager.add(task1);
-        assertEquals(10, historyManager.getHistory().size(), "Проверка, что размер истории остается 10");
-        assertFalse(historyManager.getHistory().contains(new Task(1, "Task_ 1", Status.NEW, "Description 1")),
-                "Проверка, что первая задача удалена при добавлении новой");
+        historyManager.add(task2);
+        // Повторно добавляем первую задачу
+        historyManager.add(task1);
+        List<Task> history = historyManager.getHistory();
+
+        assertEquals(2, history.size(), "Проверка, что в истории осталось две задачи");
+        // Проверяем, что в истории есть задача task1 и task2
+        assertTrue(history.contains(task1), "Проверка, что в истории есть задача task1");
+        assertTrue(history.contains(task2), "Проверка, что в истории есть задача task2");
     }
 
     @Test
@@ -55,6 +56,7 @@ public class InMemoryHistoryManagerTest {
     public void testGetHistory() {
         historyManager.add(task1);
         historyManager.add(task2);
+
         List<Task> history = historyManager.getHistory();
 
         assertEquals(2, history.size(), "Проверка, что в истории две задачи");
